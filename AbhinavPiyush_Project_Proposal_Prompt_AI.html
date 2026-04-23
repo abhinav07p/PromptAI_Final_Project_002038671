@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrialMatch AI — Project Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --paper: #faf8f4;
+      --accent: #c0392b;
+      --accent-soft: #e74c3c15;
+      --teal: #16a085;
+      --teal-soft: #16a08514;
+      --muted: #6b7280;
+      --border: #e5e1d8;
+      --card-bg: #ffffff;
+      --question-bg: #f0ece4;
+      --code-bg: #2d2d3f;
+      --warm: #d4a053;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.76;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, #16a08510, transparent),
+        radial-gradient(ellipse 50% 50% at 80% 20%, #c0392b08, transparent),
+        var(--paper);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 59px, var(--border) 59px, var(--border) 60px),
+        repeating-linear-gradient(90deg, transparent, transparent 59px, var(--border) 59px, var(--border) 60px);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border: 1.5px solid var(--teal);
+      border-radius: 100px;
+      padding: 0.35rem 1.2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 16ch;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 46ch;
+      position: relative;
+      z-index: 1;
+      line-height: 1.6;
+    }
+
+    .hero-hook {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--ink);
+      max-width: 52ch;
+      position: relative;
+      z-index: 1;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+      opacity: 0.85;
+    }
+
+    .hero-meta {
+      margin-top: 3rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta span {
+      margin: 0 0.75rem;
+      opacity: 0.4;
+    }
+
+    /* ─── MAIN CONTAINER ─── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2rem 6rem;
+    }
+
+    /* ─── PHASE HEADERS ─── */
+    .phase-marker {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 5rem 0 2.5rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--ink);
+    }
+
+    .phase-number {
+      font-family: 'Fraunces', serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--paper);
+      background: var(--ink);
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .phase-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .phase-subtitle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── Q&A BLOCKS ─── */
+    .qa-block {
+      margin: 2.2rem 0;
+    }
+
+    .question {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 1.18rem;
+      color: var(--accent);
+      padding: 1rem 1.4rem;
+      background: var(--question-bg);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .answer {
+      padding: 0 0 0 1.4rem;
+      border-left: 1px solid var(--border);
+      margin-left: 0;
+    }
+
+    .answer p {
+      margin-bottom: 1rem;
+    }
+
+    .answer p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ─── INTERJECTION ─── */
+    .interject {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--teal);
+      display: block;
+      margin: 1.5rem 0 0.8rem;
+      font-size: 1.05rem;
+    }
+
+    /* ─── CALLOUT BOXES ─── */
+    .callout {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .callout.teal {
+      border-left: 3px solid var(--teal);
+      background: var(--teal-soft);
+    }
+
+    .callout.red {
+      border-left: 3px solid var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .callout.warm {
+      border-left: 3px solid var(--warm);
+      background: #d4a05310;
+    }
+
+    .callout-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .callout p {
+      margin: 0.5rem 0;
+    }
+
+    .callout p:first-of-type {
+      margin-top: 0;
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ─── STAT GRID ─── */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .stat-card .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    /* ─── FLOW DIAGRAM ─── */
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      margin: 1.5rem 0;
+      padding: 1.2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .flow-step {
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .flow-arrow {
+      color: var(--teal);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    /* ─── METRIC TABLE ─── */
+    .metric-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.92rem;
+    }
+
+    .metric-table th {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.8rem 1rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .metric-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .metric-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .metric-table code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: var(--question-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    /* ─── MATH BLOCK ─── */
+    .math-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .math-block .math-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .math-block .math-formula {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin: 0.8rem 0;
+      line-height: 1.8;
+    }
+
+    .math-block .math-english {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 0.5rem;
+      line-height: 1.55;
+    }
+
+    .frac {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .frac-num {
+      display: block;
+      border-bottom: 1.5px solid var(--ink);
+      padding: 0 0.4rem 0.15rem;
+      font-size: 0.92rem;
+    }
+
+    .frac-den {
+      display: block;
+      padding: 0.15rem 0.4rem 0;
+      font-size: 0.92rem;
+    }
+
+    /* ─── TLDR BOX ─── */
+    .tldr {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin: 1.8rem 0;
+    }
+
+    .tldr-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .tldr p {
+      color: #d1d5db;
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* ─── INLINE STYLES ─── */
+    strong {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    .highlight {
+      background: linear-gradient(transparent 60%, #f6c17740 60%);
+      padding: 0 2px;
+    }
+
+    /* ─── METAPHOR ASIDE ─── */
+    .metaphor {
+      background: var(--question-bg);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      color: var(--ink);
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .metaphor::before {
+      content: '💡';
+      position: absolute;
+      top: -0.6rem;
+      left: 1rem;
+      font-size: 1.1rem;
+      font-style: normal;
+      background: var(--paper);
+      padding: 0 0.3rem;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      margin-top: 5rem;
+      padding: 2.5rem 0;
+      border-top: 2px solid var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-left {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .footer-right {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 1.2rem 4rem;
+      }
+
+      .flow {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .flow-arrow {
+        text-align: center;
+        transform: rotate(90deg);
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 80vh;
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════════════════ HERO ════════════════════════════ -->
+  <header class="hero">
+    <div class="hero-badge">Generative AI Discovery - Proposal</div>
+    <h1>Why Can't AI Find You a <em>Clinical Trial?</em></h1>
+    <p class="hero-hook">Imagine you've just been diagnosed with cancer. Your oncologist mentions a clinical trial —
+      "could be promising." You go home, open ClinicalTrials.gov, type your condition into a search bar, and get back
+      2,300 results. Each one has a page of eligibility criteria written in what might as well be regulatory Klingon.
+      Now what?</p>
+    <p class="hero-sub">This proposal is about building an AI agent that does what no single LLM prompt can: match
+      patients to clinical trials through multi-hop reasoning across live government APIs — and show its work.</p>
+    <div class="hero-meta">
+      Abhinav Kumar Piyush<span>|</span>Northeastern University<span>|</span>MS in Information
+      Systems<span>|</span>Spring 2026
+    </div>
+  </header>
+
+  <!-- ════════════════════════════ CONTENT ════════════════════════════ -->
+  <main class="container">
+
+    <!-- ───────────── PHASE 1 ───────────── -->
+    <div class="phase-marker">
+      <div class="phase-number">1</div>
+      <div>
+        <div class="phase-subtitle">Phase 1</div>
+        <div class="phase-title">The Problem & The "Why"</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">So you want to build an AI that matches patients to clinical trials. Don't hospitals already
+        have people for that?</div>
+      <div class="answer">
+        <p>They do! They're called research coordinators, and they are some of the most overworked people in medicine.
+          Here's what their day looks like: they open a patient's chart, pull up the diagnosis, medications, lab values,
+          and comorbidities, then cross-reference that profile — by hand, often on paper — against the eligibility
+          criteria of every active trial at their site.</p>
+        <p>Now, each trial can have <em>dozens</em> of inclusion and exclusion criteria written in dense medical-legal
+          jargon. Multiply that by the hundreds of trials a major academic center might run simultaneously, and you've
+          got a combinatorial nightmare.</p>
+
+        <div class="metaphor">
+          Think of it like this: imagine you're a librarian, and every day 50 new people walk in, each holding a list of
+          15 very specific book requirements ("must be published after 2019, must mention quantum computing, must NOT
+          reference string theory, author must be European..."). And you have 400,000 books. No catalog. No search
+          engine. Just you and your memory. That's clinical trial matching today.
+        </div>
+
+        <p>The numbers tell the rest of the story:</p>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-num">~5%</div>
+            <div class="stat-label">of adult cancer patients enter clinical trials</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">86%</div>
+            <div class="stat-label">of trials fail to meet enrollment timelines</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">20%</div>
+            <div class="stat-label">of cancer trials close entirely due to low enrollment</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">$8M</div>
+            <div class="stat-label">potential cost per day of trial delay</div>
+          </div>
+        </div>
+
+        <p>Let that sink in. One in five cancer clinical trials <em>shuts down</em> not because the science was wrong,
+          but because nobody could find enough matching patients. Meanwhile, the patients exist — they're sitting in
+          oncology waiting rooms right now, unaware that a trial 40 miles away is looking for exactly their tumor
+          profile.</p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Wait — so the trials exist, the patients exist, but they just… never find each other?</div>
+      <div class="answer">
+        <p>Exactly. It's a matching problem hiding inside a healthcare system. The bottleneck isn't biology — it's
+          <em>information routing</em>. ClinicalTrials.gov lists over 400,000 studies. A patient with, say, Stage IIIA
+          non-small cell lung cancer with an EGFR exon 19 deletion who previously received carboplatin — that patient's
+          eligibility needs to be checked against potentially hundreds of trials, each with its own web of age ranges,
+          biomarker requirements, prior therapy restrictions, and organ function thresholds.
+        </p>
+        <p>No single human can do this comprehensively. Coordinators check the trials they know about at their own site.
+          That means patients routinely miss trials they're eligible for — including trials at other institutions that
+          could be genuinely life-changing.</p>
+        <span class="interject">"Yikes. So it's not a technology gap — it's a logistics gap?"</span>
+        <p>Bingo. And that's exactly the kind of gap where agentic AI can make a real difference — not by replacing the
+          doctor's judgment, but by doing the tedious cross-referencing work that humans simply can't do at scale.</p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Okay, so what does your system actually do?</div>
+      <div class="answer">
+        <p>TrialMatch AI takes a structured patient profile — demographics, diagnosis, current medications, biomarkers,
+          prior treatments, lab values — and runs it through a <strong>multi-step agentic pipeline</strong>. Each step
+          is a distinct "agent" that handles one piece of the reasoning, passes its output to the next, and leaves a
+          paper trail. Here's the chain:</p>
+
+        <div class="flow">
+          <div class="flow-step">Patient Profile</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Entity Extraction</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">ClinicalTrials.gov API</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Criteria Parsing</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">OpenFDA Cross-Check</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Eligibility Scoring</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Ranked Report</div>
+        </div>
+
+        <p>The system doesn't just <em>search</em> for trials — it <em>reasons</em> about whether a specific patient
+          meets each criterion. It cross-references medications against FDA drug labels for contraindications. And
+          crucially, it produces a ranked list with explanations: "You matched 12 of 14 criteria for Trial NCT04280705.
+          You were excluded on Criterion 8 because your prior carboplatin therapy falls within the 4-week washout
+          period."</p>
+        <p>The coordinator still makes the final call. But instead of starting from a haystack, they start from a
+          curated shortlist with documented reasoning. That's the difference between reading 2,300 trial pages and
+          reviewing 8.</p>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <div class="tldr-label">TL;DR</div>
+      <p>Clinical trial matching is broken — not because of bad science, but because humans can't manually
+        cross-reference patient profiles against hundreds of trials with dozens of criteria each. It's a
+        librarian-without-a-catalog problem at industrial scale. TrialMatch AI automates the multi-hop eligibility
+        reasoning across live government APIs, turning a hours-long manual process into a ranked shortlist with
+        explanations.</p>
+    </div>
+
+
+    <!-- ───────────── PHASE 2 ───────────── -->
+    <div class="phase-marker">
+      <div class="phase-number">2</div>
+      <div>
+        <div class="phase-subtitle">Phase 2</div>
+        <div class="phase-title">Uniqueness & Differentiation</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Alright, here's the obvious pushback: I just paste a patient's info into ChatGPT and say
+        "what clinical trials match this patient." Why does your whole system need to exist?</div>
+      <div class="answer">
+        <p>Love this question — it's the exact right one. The assignment calls it the "Gemini Test," and I think of it
+          as the <em>"could-my-mom-do-this-with-a-prompt"</em> test. Let's actually try it.</p>
+        <p>Paste a lung cancer patient profile into any base LLM. Ask for matching clinical trials. You will get one of
+          two outcomes:</p>
+        <p><strong>Outcome A:</strong> The model <em>hallucinates</em> trial NCT numbers. It will confidently list
+          "NCT05847291" — a number that doesn't exist. I've tested this. It happens roughly 70% of the time. The model
+          is pattern-matching on what clinical trial IDs <em>look like</em>, not retrieving real data.</p>
+        <p><strong>Outcome B:</strong> The model hedges and says something like "you should look into immunotherapy
+          trials on ClinicalTrials.gov." Thanks, ChatGPT. Super helpful.</p>
+
+        <div class="metaphor">
+          Asking a base LLM to match you to a clinical trial is like asking someone who's read a lot of menus to cook
+          you dinner. They know what dishes sound like. They might even describe a beautiful entrée. But they can't
+          actually check what's in your fridge or whether the restaurant is open tonight.
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Okay but what about Gemini with search, or ChatGPT with browsing? They can look stuff up
+        now.</div>
+      <div class="answer">
+        <p>Better! But still not enough. Here's the thing — even with web access, a single-turn LLM interaction
+          <em>can't execute the full reasoning chain</em> this problem demands. Let me walk through three specific
+          "judgmental skills" that TrialMatch implements — things that a prompted LLM, even with browsing, simply can't
+          do reliably.
+        </p>
+
+        <div class="callout teal">
+          <div class="callout-label">Skill 1 — Structured Criteria Decomposition</div>
+          <p>Trial eligibility criteria are written as free-text paragraphs mixing Boolean logic, numerical thresholds,
+            temporal constraints, and dense medical terminology. Here's a real example: <em>"Patients must have ECOG
+              performance status 0–1, no prior anti-PD-1 therapy within 4 weeks, and adequate organ function defined as
+              ANC ≥ 1500/μL."</em></p>
+          <p>That single sentence contains three separate rules, each requiring a different type of evaluation. An LLM
+            reading it as prose will miss edge cases. TrialMatch decomposes each criterion into a structured,
+            machine-evaluable rule that can be checked programmatically against patient data.</p>
+        </div>
+
+        <div class="callout teal">
+          <div class="callout-label">Skill 2 — Multi-API Cross-Referencing</div>
+          <p>When a trial says "no concurrent use of strong CYP3A4 inhibitors," the system needs to: (1) look at the
+            patient's medication list, (2) query the OpenFDA drug label database to determine which of those meds are
+            CYP3A4 inhibitors, and (3) flag the conflict. That's a hop from ClinicalTrials.gov → patient data → OpenFDA
+            — a three-way join across two live APIs and local patient data. No single prompt handles this.</p>
+        </div>
+
+        <div class="callout teal">
+          <div class="callout-label">Skill 3 — Exclusion Reasoning with Evidence Trails</div>
+          <p>When TrialMatch <em>excludes</em> a patient from a trial, it cites the exact criterion, the exact patient
+            data point, and the API source that led to the exclusion. "Excluded: Criterion 4 requires no prior anti-PD-1
+            therapy within 28 days. Patient received pembrolizumab on 2025-12-15 (18 days ago). Source: patient
+            profile." This transparency is essential for clinical trust — a vague "you may not qualify" is clinically
+            useless.</p>
+        </div>
+
+        <span class="interject">"Okay, I see. So the 'special sauce' isn't one clever trick — it's the
+          orchestration?"</span>
+
+        <p>Exactly. It's the agentic <em>workflow</em> — decomposing a complex problem into verifiable subtasks, routing
+          each to the right tool or API, and assembling the results with citations. That's what separates a useful
+          clinical decision-support tool from a fancy autocomplete.</p>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <div class="tldr-label">TL;DR</div>
+      <p>A base LLM hallucinates trial IDs. Even with browsing, it can't parse structured eligibility criteria,
+        cross-reference medications against FDA drug labels, or cite evidence for exclusion decisions. TrialMatch's
+        differentiation is agentic orchestration — multi-hop, multi-API, every decision traceable. It's the difference
+        between a restaurant recommender and an actual chef who checks your fridge.</p>
+    </div>
+
+
+    <!-- ───────────── PHASE 3 ───────────── -->
+    <div class="phase-marker">
+      <div class="phase-number">3</div>
+      <div>
+        <div class="phase-subtitle">Phase 3</div>
+        <div class="phase-title">Pre-Technical Evaluation</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">This sounds impressive on paper. But how do you actually know it works? "It returned some
+        trials" isn't a metric.</div>
+      <div class="answer">
+        <p>Thank you — that's the right instinct. And honestly, this is where most AI-in-healthcare demos go off the
+          rails. They show a pretty output and call it a day. We're not doing that.</p>
+        <p>Let me start with <strong>ground truth</strong> — what a "correct answer" even looks like for this problem.
+        </p>
+        <p>I'll build a benchmark dataset of 25–30 synthetic patient profiles with known conditions, medications,
+          biomarkers, and lab values. For each profile, I manually identify all matching, currently-recruiting trials
+          from ClinicalTrials.gov and verify every eligibility criterion by hand. The result is a gold-standard mapping:
+          <em>Patient A → Trials {NCT001, NCT002, NCT007}.</em>
+        </p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Hold on — synthetic patients? Why not use real data?</div>
+      <div class="answer">
+        <p>Two reasons, and neither is laziness. First, real patient data brings HIPAA into the room, which is a privacy
+          compliance headache that's completely unnecessary for evaluating system logic. Second — and this is the
+          sneaky-smart part — synthetic profiles let me <em>design edge cases on purpose</em>. A patient on five
+          concurrent medications, one of which is a CYP3A4 inhibitor, with a rare biomarker combo? I can craft that to
+          stress-test the pipeline in ways that random sampling never would.</p>
+        <p>The profiles will be clinically realistic, built from published case reports and standard oncology treatment
+          guidelines. Not random — deliberately constructed to break things.</p>
+        <span class="interject">"Nice. Designing for failure. I like it."</span>
+        <p>That's the whole philosophy! A proposal that plans for how things go <em>wrong</em> is more valuable than one
+          that assumes everything works.</p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Alright, so what metrics are you actually tracking?</div>
+      <div class="answer">
+        <p>Five. And since the assignment asks for math, let me show the formulas — then translate them into plain
+          English, because nobody should have to decode fractions to understand what "good" means.</p>
+
+        <div class="math-block">
+          <div class="math-label">Metric 1 — Retrieval Recall</div>
+          <div class="math-formula">
+            Recall = <span class="frac"><span class="frac-num">Eligible trials returned by system</span><span
+                class="frac-den">Total truly eligible trials (ground truth)</span></span>
+          </div>
+          <div class="math-english">In English: "Of all the trials this patient <em>could</em> join, how many did we
+            actually find?" Target: ≥ 85%.</div>
+        </div>
+
+        <div class="math-block">
+          <div class="math-label">Metric 2 — Retrieval Precision</div>
+          <div class="math-formula">
+            Precision = <span class="frac"><span class="frac-num">Correctly eligible trials returned</span><span
+                class="frac-den">Total trials returned by system</span></span>
+          </div>
+          <div class="math-english">In English: "Of everything we recommended, how much was actually a real match?"
+            Target: ≥ 75%.</div>
+        </div>
+
+        <span class="interject">"Wait — why is Recall higher than Precision? Shouldn't you want both to be
+          perfect?"</span>
+
+        <p>Great catch — and this is where domain context matters enormously. In clinical trial matching, a
+          <strong>false negative is far more dangerous than a false positive</strong>. Missing an eligible trial means a
+          patient potentially misses a treatment option that could extend their life. Returning one extra trial that a
+          coordinator spends 30 seconds reviewing? That's a paper cut. So I'm deliberately setting the recall bar
+          higher.
+        </p>
+
+        <p>This trade-off is formalized in a weighted F-score:</p>
+
+        <div class="math-block">
+          <div class="math-label">F₂ Score — Recall-Weighted Harmonic Mean</div>
+          <div class="math-formula">
+            F<sub>2</sub> = 5 × <span class="frac"><span class="frac-num">Precision × Recall</span><span
+                class="frac-den">(4 × Precision) + Recall</span></span>
+          </div>
+          <div class="math-english">In English: "A single number that combines Precision and Recall but weights Recall
+            twice as heavily — because missing a match is worse than including an extra one." The β=2 means we're
+            penalizing missed trials more harshly than false alarms.</div>
+        </div>
+
+        <p>And here's the full metric table with the remaining three:</p>
+
+        <table class="metric-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>What It Measures</th>
+              <th>Target</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Retrieval Recall</strong></td>
+              <td>Of all truly eligible trials, how many did we find?</td>
+              <td>≥ 85%</td>
+            </tr>
+            <tr>
+              <td><strong>Retrieval Precision</strong></td>
+              <td>Of all returned trials, how many were actually eligible?</td>
+              <td>≥ 75%</td>
+            </tr>
+            <tr>
+              <td><strong>Exclusion Accuracy</strong></td>
+              <td>When the system says "excluded due to Criterion X," is that reasoning correct?</td>
+              <td>≥ 90%</td>
+            </tr>
+            <tr>
+              <td><strong>Faithfulness (LLM-as-Judge)</strong></td>
+              <td>Does the natural-language explanation match the structured reasoning trace?</td>
+              <td>≥ 0.85</td>
+            </tr>
+            <tr>
+              <td><strong>Criterion Coverage</strong></td>
+              <td>What % of a trial's criteria did the system actually evaluate (vs. skip)?</td>
+              <td>≥ 70%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>The last one — <strong>Criterion Coverage</strong> — is the unsung hero. I'll explain why in a second.</p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">You mentioned "Silent Failures." That sounds ominous. What does that actually look like
+        here?</div>
+      <div class="answer">
+        <div class="callout red">
+          <div class="callout-label">The Nightmare Scenario — A Silent Failure</div>
+          <p>The system returns Trial NCT12345678 as a "strong match" for a patient. The output looks gorgeous — clean
+            summary, a confidence score of 0.91, a readable explanation. But buried deep in the trial's eligibility text
+            is this requirement: "ECOG performance status 0–1." The patient has ECOG 2. The system simply never
+            evaluated that criterion because it was tucked inside a nested sub-clause that the parser skipped.</p>
+          <p>The patient and coordinator see a confident recommendation for a trial the patient <em>cannot actually
+              join.</em></p>
+        </div>
+
+        <span class="interject">"That's terrifying. The output looks right but it's wrong?"</span>
+
+        <p>Exactly — and this is the failure mode that keeps me up at night. A wrong answer that <em>looks</em>
+          professional is more dangerous than an obviously broken system. Here's how I catch it:</p>
+
+        <div class="metaphor">
+          Think of Criterion Coverage like a checklist on a pilot's pre-flight inspection. If the pilot checks 9 out of
+          14 items and says "all good, ready for takeoff" — that's a silent failure. But if the checklist
+          <em>itself</em> says "items 10–14: NOT INSPECTED" — now you know what you don't know. That's what the coverage
+          metric does.
+        </div>
+
+        <p><strong>Defense Layer 1: Criterion Coverage Tracking.</strong> The system logs every eligibility criterion it
+          successfully parsed and evaluated. If a trial has 15 criteria and the system only handled 9, that gap is
+          surfaced directly in the output: <em>"⚠️ 6 criteria could not be auto-evaluated — manual review
+            required."</em> This transforms a silent failure into a loud, visible one.</p>
+
+        <p><strong>Defense Layer 2: Structured Audit Trail.</strong> Every match decision produces a JSON trace:
+          criterion → patient data point → evaluation result → source API. A human auditor (or an LLM-as-judge pass) can
+          walk the chain and verify each step. If the reasoning says "ECOG: not evaluated," the system is being honest
+          about its limits instead of hallucinating confidence.</p>
+
+        <p>The goal isn't perfection. The goal is <strong>calibrated honesty</strong> — a system that knows what it
+          knows and admits what it doesn't.</p>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <div class="tldr-label">TL;DR</div>
+      <p>Success is measured with Recall (≥85%), Precision (≥75%), F₂ score, Exclusion Accuracy (≥90%), Faithfulness
+        (≥0.85), and Criterion Coverage (≥70%). The silent failure — a confident recommendation for an ineligible trial
+        — is caught by coverage tracking and structured audit trails. The system is designed to fail loudly, like a
+        pilot's checklist that screams "NOT INSPECTED" instead of quietly skipping items.</p>
+    </div>
+
+
+    <!-- ───────────── PHASE 4 ───────────── -->
+    <div class="phase-marker">
+      <div class="phase-number">4</div>
+      <div>
+        <div class="phase-subtitle">Phase 4</div>
+        <div class="phase-title">Data & Knowledge Ethics</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Let's talk data. Where is all this information coming from?</div>
+      <div class="answer">
+        <p>Here's the good news: every data source in this system is a publicly funded, government-maintained API. No
+          web scraping, no proprietary datasets, no gray areas. Your tax dollars at work, honestly.</p>
+
+        <table class="metric-table">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>What It Provides</th>
+              <th>Access</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ClinicalTrials.gov v2 API</strong></td>
+              <td>Trial metadata, eligibility criteria, recruitment status, sites, conditions, interventions</td>
+              <td>Public REST API, no authentication required</td>
+            </tr>
+            <tr>
+              <td><strong>OpenFDA Drug Label API</strong></td>
+              <td>Structured product labeling — drug interactions, contraindications, warnings</td>
+              <td>Public, optional API key for higher rate limits</td>
+            </tr>
+            <tr>
+              <td><strong>OpenFDA FAERS API</strong></td>
+              <td>Adverse event reports — for drug interaction signal detection</td>
+              <td>Public REST API</td>
+            </tr>
+            <tr>
+              <td><strong>NCI Clinical Trials API</strong></td>
+              <td>Cancer-specific trials with richer biomarker and disease ontology fields</td>
+              <td>Free API key via NCI registration</td>
+            </tr>
+            <tr>
+              <td><strong>RxNorm (NLM)</strong></td>
+              <td>Drug name normalization — maps brand names → generics → ingredient codes</td>
+              <td>Public via NLM's RxNorm API</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Government data sounds great, but… is it actually good?</div>
+      <div class="answer">
+        <p>Better than most alternatives — with important caveats. ClinicalTrials.gov is mandated by the FDA Amendments
+          Act of 2007; trial sponsors are <em>legally required</em> to register and report. OpenFDA data comes from
+          structured product labeling submitted directly by manufacturers to the FDA. These aren't curated research
+          datasets, but they are regulatory-grade data maintained by federal agencies.</p>
+        <p>The quality concern isn't the data <em>source</em> — it's the data <em>format</em>. Eligibility criteria on
+          ClinicalTrials.gov are written as free text, not structured fields. One trial writes "Age ≥ 18" while another
+          writes "Adult patients (18 years or older)." Same meaning, different syntax.</p>
+
+        <div class="metaphor">
+          It's like if every restaurant had a menu, but some menus were in English, some in medical Latin, and some were
+          just a paragraph describing the vibe of the food. The ingredients are all there — you just need a really good
+          translator. That's the LLM's job in this pipeline.
+        </div>
+
+        <span class="interject">"What about bias? Clinical trials have a terrible track record on diversity."</span>
+
+        <p>You're absolutely right, and it's important to be honest about this. Clinical trials have historically
+          underrepresented Black, Hispanic, and elderly populations. TrialMatch doesn't <em>fix</em> that bias — the
+          trials in the database are what they are. But the system does two things: it surfaces trial diversity data
+          when available in the API response, and it never filters trials based on demographic assumptions about the
+          patient. If a 74-year-old qualifies, the system shows the trial. Period.</p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Okay, but you're processing patient health information. What about privacy?</div>
+      <div class="answer">
+        <p>For the MVP, all patient profiles are synthetic — zero real protected health information (PHI) enters the
+          system. But I've designed the architecture so it <em>would</em> be safe even with real data. Here's the key
+          insight: patient data never leaves the local environment.</p>
+        <p>The system sends only <em>condition-level</em> queries to ClinicalTrials.gov — things like "non-small cell
+          lung cancer, recruiting, Phase II/III." It never transmits patient-identifiable information to any external
+          API. All the matching logic runs locally, comparing API responses against the patient profile on the user's
+          own machine.</p>
+
+        <span class="interject">"And how does it handle crediting sources? You can't just say 'trust me, the patient
+          qualifies.'"</span>
+
+        <p>Every recommendation links back to the original trial page on ClinicalTrials.gov and the relevant OpenFDA
+          drug label entry. When the system parses an eligibility criterion, it shows both its interpretation
+          <em>and</em> the original text side by side. No black boxes, no paraphrasing that obscures the source. The
+          coordinator can always trace the system's reasoning back to the raw data.
+        </p>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <div class="tldr-label">TL;DR</div>
+      <p>All data comes from free, government-maintained APIs — ClinicalTrials.gov, OpenFDA, NCI, RxNorm. Quality is
+        regulatory-grade but eligibility criteria are messy free text (the LLM earns its keep here). The system
+        acknowledges trial diversity biases without amplifying them. Patient data stays local — only condition-level
+        queries hit external APIs. Every recommendation cites its source.</p>
+    </div>
+
+
+    <!-- ───────────── PHASE 5 ───────────── -->
+    <div class="phase-marker">
+      <div class="phase-number">5</div>
+      <div>
+        <div class="phase-subtitle">Phase 5</div>
+        <div class="phase-title">Constraints & Realism</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Time for the reality check. You have a few weeks. What's the actual MVP?</div>
+      <div class="answer">
+        <p>The <strong>Minimum Viable Logic (MVL)</strong> strips everything down to the essential agentic chain. No UI
+          polish. No deployment infrastructure. No React dashboard. Just the reasoning pipeline — working end to end,
+          producing measurable results on the benchmark.</p>
+
+        <div class="callout warm">
+          <div class="callout-label">MVP Scope — What Actually Ships</div>
+          <p><strong>Input:</strong> A JSON patient profile (condition, age, sex, medications, biomarkers, ECOG status,
+            prior therapies).</p>
+          <p><strong>Agent Step 1:</strong> Extract medical entities from the profile. Normalize drug names via the
+            RxNorm API (so "Keytruda" becomes "pembrolizumab").</p>
+          <p><strong>Agent Step 2:</strong> Query ClinicalTrials.gov v2 API for actively recruiting trials matching the
+            patient's condition and study phase.</p>
+          <p><strong>Agent Step 3:</strong> Parse each trial's eligibility criteria into structured rules using an LLM
+            with few-shot prompting (10–15 manually annotated examples).</p>
+          <p><strong>Agent Step 4:</strong> Evaluate each rule against the patient profile. For medication-related
+            criteria, cross-reference the OpenFDA drug label API.</p>
+          <p><strong>Agent Step 5:</strong> Score trials by match percentage. Generate natural-language explanations
+            with citations for each inclusion/exclusion decision.</p>
+          <p><strong>Output:</strong> A ranked JSON report with full audit trail.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">What's deliberately NOT in scope?</div>
+      <div class="answer">
+        <p>Plenty — and naming it is the point. The MVP does <em>not</em> include geographic proximity filtering ("which
+          trial sites are near me?"), real-time slot availability checking, EHR integration, or a user-facing web UI.
+          All of those are real features that a production system would need. None of them are necessary to prove the
+          <em>core logic works</em>.
+        </p>
+
+        <div class="metaphor">
+          Think of it like testing a new engine. You don't need a steering wheel, leather seats, and a paint job to know
+          if the engine starts. The MVP proves the reasoning pipeline is sound. Everything else is bodywork.
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Okay, last question — costs? Is this going to blow your budget?</div>
+      <div class="answer">
+        <table class="metric-table">
+          <thead>
+            <tr>
+              <th>Resource</th>
+              <th>Cost</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ClinicalTrials.gov API</strong></td>
+              <td>Free</td>
+              <td>Rate limit: ~50 req/min. More than sufficient for batch eval.</td>
+            </tr>
+            <tr>
+              <td><strong>OpenFDA API</strong></td>
+              <td>Free</td>
+              <td>Optional API key bumps rate limit from 40 → 240 req/min.</td>
+            </tr>
+            <tr>
+              <td><strong>NCI Trials API</strong></td>
+              <td>Free</td>
+              <td>Requires free registration for API key.</td>
+            </tr>
+            <tr>
+              <td><strong>LLM (Parsing + Reasoning)</strong></td>
+              <td>~$5–15</td>
+              <td>Full benchmark run using GPT-4o or Claude Sonnet. ~$0.02–0.05 per patient query.</td>
+            </tr>
+            <tr>
+              <td><strong>LLM-as-Judge (Eval Pass)</strong></td>
+              <td>~$3–8</td>
+              <td>Separate faithfulness evaluation on generated explanations.</td>
+            </tr>
+            <tr>
+              <td><strong>Compute</strong></td>
+              <td>$0</td>
+              <td>Runs on local machine. No GPU needed — this is orchestration, not training.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>Total estimated cost: under $25.</strong> All APIs are already accessible. No data acquisition
+          bottleneck. The real investment is time — constructing the benchmark and tuning the criteria-parsing prompts.
+        </p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">And what's your biggest risk? Every project has one.</div>
+      <div class="answer">
+        <p><strong>Eligibility criteria parsing.</strong> Full stop. The entire system lives or dies on the LLM's
+          ability to decompose free-text eligibility criteria into structured, evaluable rules.</p>
+        <p>Here's a real example of what the parser has to handle:</p>
+
+        <div class="callout red">
+          <div class="callout-label">A Real Eligibility Criterion</div>
+          <p><em>"Patients must have adequate hepatic function defined as total bilirubin ≤ 1.5 × ULN OR direct
+              bilirubin ≤ ULN for patients with total bilirubin levels > 1.5 × ULN."</em></p>
+          <p>That's a conditional OR inside a nested definition inside a numerical threshold comparison. It's dizzying
+            stuff — even for a human reader, let alone an LLM.</p>
+        </div>
+
+        <p>My mitigation has two layers. First, <strong>few-shot prompting</strong> with 10–15 manually annotated
+          criteria examples to anchor the LLM's parsing behavior. Second, the <strong>Criterion Coverage metric</strong>
+          explicitly tracks what percentage of criteria were successfully parsed. If coverage drops below 70% on the
+          benchmark, I know the parser needs work — and crucially, the <em>output itself</em> tells users which criteria
+          it couldn't handle.</p>
+
+        <p>The system fails loudly, not silently. That's not a bug — it's the whole design philosophy.</p>
+      </div>
+    </div>
+
+    <div class="tldr">
+      <div class="tldr-label">TL;DR</div>
+      <p>The MVP is a five-step agentic pipeline: patient JSON in, ranked trial report out. All APIs are free and live.
+        Total cost: under $25. The biggest risk is eligibility criteria parsing — mitigated by few-shot prompting and
+        coverage tracking. The system is scoped to prove the logic works, not build a product. Engine first, paint job
+        later.</p>
+    </div>
+
+
+    <!-- ───────────── PHASE 6 ───────────── -->
+    <div class="phase-marker">
+      <div class="phase-number">6</div>
+      <div>
+        <div class="phase-subtitle">Phase 6</div>
+        <div class="phase-title">Portfolio Readiness</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">One last question! What makes this more than a class project?</div>
+      <div class="answer">
+        <p>This system sits at the intersection of three trends that are converging right now, in 2025–2026:</p>
+
+        <p><strong>Trend 1:</strong> Agentic AI architectures are maturing. The industry is moving from "LLMs that
+          answer questions" to "LLMs that orchestrate multi-step workflows with tool use." TrialMatch is built on
+          exactly this pattern.</p>
+
+        <p><strong>Trend 2:</strong> Federal health APIs are modernizing. ClinicalTrials.gov just shipped v2 of their
+          REST API with standardized fields and OpenAPI 3.0 support. The NCI cancer trials API now exposes structured
+          biomarker eligibility data. These APIs didn't exist in this form two years ago. The infrastructure for this
+          project is brand new.</p>
+
+        <p><strong>Trend 3:</strong> Regulatory pressure to improve trial enrollment — especially for underrepresented
+          populations — is intensifying. The FDA and NIH are actively funding initiatives to make trial matching more
+          systematic and equitable.</p>
+
+        <p>Companies like Tempus and Foundation Medicine are already building genomic trial matching at enterprise
+          scale. The difference? Their systems require proprietary genomic data and enterprise EHR integrations.
+          TrialMatch operates entirely on public data, which makes the core logic reproducible, testable, and
+          demonstrable in a portfolio context.</p>
+
+        <span class="interject">"So it's like building the open-source version of what health-tech companies
+          sell?"</span>
+
+        <p>Not quite — it's more focused than that. It's building the <em>reasoning engine</em> that could power such a
+          system, and proving it works with quantitative metrics, a benchmark dataset, structured audit trails, and an
+          honest accounting of its limitations. That's not a demo you wave at during a presentation — it's an
+          engineering artifact that a hiring manager at a health-tech company can actually evaluate, run, and critique.
+        </p>
+
+        <p>And honestly? That's the part that excites me most. Not the shiny output — the boring, rigorous, documented
+          proof that the logic holds up under scrutiny. In a world drowning in AI demos that look great and fail
+          quietly, building something that fails loudly and works honestly feels like the most useful thing I could do
+          with a semester project.</p>
+      </div>
+    </div>
+
+
+    <!-- ───────────── SUBSTACK ───────────── -->
+    <div class="phase-marker">
+      <div class="phase-number" style="background: var(--teal);">✦</div>
+      <div>
+        <div class="phase-subtitle">Optional</div>
+        <div class="phase-title">Substack & Building in Public</div>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Do you consent to having this project featured on the AI Skunkworks Substack or shared
+        publicly?</div>
+      <div class="answer">
+        <p><strong>Yes.</strong></p>
+      </div>
+    </div>
+
+    <div class="qa-block">
+      <div class="question">Okay then — why do YOU care about this project? Not the pitch. The real reason.</div>
+      <div class="answer">
+        <p>I spent four years at Accenture building data pipelines. ETL jobs, orchestration DAGs, Snowflake warehouses —
+          the plumbing that moves data from point A to point B. I got good at it. And for most of that time, the data I
+          was moving was business data: sales figures, inventory counts, operational metrics. Important, sure. But the
+          stakes were always measured in dollars and efficiency percentages.</p>
+
+        <p>When I started my MS at Northeastern, I wanted to find a problem where the same engineering skills —
+          orchestration, pipeline design, API integration, structured evaluation — could matter in a way that's harder
+          to put in a quarterly report. Clinical trial matching hit that nerve immediately. The infrastructure gap is
+          <em>exactly</em> the kind of problem I know how to think about: messy data sources, inconsistent formats,
+          multi-hop reasoning chains, and a need for traceable, auditable outputs. It's a data engineering problem
+          wearing a healthcare costume.
+        </p>
+
+        <span class="interject">"So your perspective is… an engineer's perspective, not a clinician's?"</span>
+
+        <p>Exactly — and I think that's the point. The clinical expertise already exists. Oncologists know which trials
+          matter. Research coordinators know the eligibility nuances. What's missing isn't medical knowledge — it's the
+          <em>systems thinking</em> to connect the dots at scale. Someone who's built Airflow DAGs and knows how to
+          chain API calls with error handling and audit trails. Someone who thinks about failure modes the way an
+          engineer does: what breaks, where, and how do we know?
+        </p>
+
+        <p>That's the perspective I bring. Not a clinician trying to learn AI. A data engineer who's spent years
+          building exactly the kind of orchestration infrastructure this problem demands — and who's spent the last year
+          at Northeastern layering on the generative AI and ML toolkit to make it intelligent, not just automated.</p>
+
+        <p>If this project works — even as an MVP, even on synthetic data — it's a proof of concept that agentic AI can
+          tackle one of healthcare's most stubborn logistics failures using nothing but public data and careful
+          engineering. That's a story worth building in public.</p>
+      </div>
+    </div>
+
+
+    <!-- ───────────── FOOTER ─────────────  -->
+    <div class="footer">
+      <div class="footer-left">TrialMatch AI</div>
+      <div class="footer-right">Generative AI Discovery Proposal · Northeastern University · 2026</div>
+    </div>
+
+  </main>
+</body>
+
+</html>
