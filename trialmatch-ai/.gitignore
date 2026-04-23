@@ -1,0 +1,13 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+fine_tuning/models/*/model.safetensors
+fine_tuning/models/*/pytorch_model.bin
+data/ingested/*.json
+data/demo_cache/
+qdrant_data/
+.DS_Store
+.vscode/
+.idea/
