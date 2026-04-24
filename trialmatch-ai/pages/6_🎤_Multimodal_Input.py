@@ -81,8 +81,17 @@ else: st.info("Record voice or upload an image above to get started.")
 # ═══ TTS ═══
 st.markdown("---")
 st.markdown("### 🔊 Audio Summary")
-if st.session_state.get("enable_tts",True):
+if st.session_state.get("enable_tts", True):
     if st.button("🔊 Generate Audio"):
-        with st.spinner("Generating..."): time.sleep(1)
-        st.markdown("_62-year-old male with stage 3A NSCLC matched 4 trials. Top match: NCT-04954469 at 92%._")
-        st.download_button("📥 Download MP3",b"placeholder","summary.mp3","audio/mpeg")
+        with st.spinner("Generating audio summary..."):
+            from gtts import gTTS
+            import io
+            
+            text = "62-year-old male with stage 3A non-small cell lung cancer matched 4 trials. Top match: NCT-04954469 at 92%."
+            tts = gTTS(text=text, lang='en')
+            audio_data = io.BytesIO()
+            tts.write_to_fp(audio_data)
+            
+            st.markdown(f"_{text}_")
+            st.audio(audio_data)
+            st.download_button("📥 Download MP3", audio_data.getvalue(), "summary.mp3", "audio/mpeg")

@@ -16,9 +16,28 @@ np.random.seed(42)
 DARK_LAYOUT = dict(plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)", font_color="#e0e0e0", margin=dict(l=20,r=20,t=30,b=40))
 
 # KPIs
-k1,k2,k3,k4,k5,k6 = st.columns(6)
-k1.metric("Patients","28","+3"); k2.metric("Trials","342","+45"); k3.metric("Avg Match","73.2%","+2.1%")
-k4.metric("Coverage","78.5%","+4.3%"); k5.metric("Latency","3.8s","-0.6s"); k6.metric("Voice Inputs","12","+4")
+st.markdown("""
+<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.8rem; margin: 1rem 0;">
+    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: bold;">28</div><div style="font-size: 0.8rem; color: #888;">Patients</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +3</div>
+    </div>
+    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: bold;">342</div><div style="font-size: 0.8rem; color: #888;">Trials</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +45</div>
+    </div>
+    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: bold;">73.2%</div><div style="font-size: 0.8rem; color: #888;">Avg Match</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +2.1%</div>
+    </div>
+    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: bold;">78.5%</div><div style="font-size: 0.8rem; color: #888;">Coverage</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +4.3%</div>
+    </div>
+    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: bold;">3.8s</div><div style="font-size: 0.8rem; color: #888;">Latency</div><div style="color: #e74c3c; font-size: 0.8rem;">↓ -0.6s</div>
+    </div>
+    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
+        <div style="font-size: 1.5rem; font-weight: bold;">12</div><div style="font-size: 0.8rem; color: #888;">Voices</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +4</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 st.markdown("---")
 
 c1,c2 = st.columns(2)

@@ -69,10 +69,13 @@ DARK_CSS = """
 .pipe-step.ft { border-color: var(--red); color: var(--red); }
 .pipe-arrow { color: var(--accent); font-weight: 700; margin: 0 0.15rem; }
 
-.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin: 1rem 0; }
-.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
-.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
-.stat-label { font-size: 0.78rem; color: var(--text-dim); }
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin: 1rem 0; width: 100%; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1.2; margin-bottom: 0.2rem; }
+.stat-label { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.stat-delta { font-size: 0.7rem; padding: 0.1rem 0.4rem; border-radius: 4px; margin-top: 0.4rem; display: inline-block; }
+.delta-pos { background: #1abc9c20; color: #1abc9c; border: 1px solid #1abc9c40; }
+.delta-neg { background: #e74c3c20; color: #e74c3c; border: 1px solid #e74c3c40; }
 
 .audit-pass { border-left: 3px solid #1abc9c; background: #1abc9c10; border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.3rem 0; font-size: 0.85rem; }
 .audit-fail { border-left: 3px solid #e74c3c; background: #e74c3c10; border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.3rem 0; font-size: 0.85rem; }

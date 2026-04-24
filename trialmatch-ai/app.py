@@ -46,7 +46,7 @@ with st.sidebar:
     st.session_state["enable_tts"] = st.toggle("🔊 Audio Output", True)
 
     st.markdown("---")
-    st.caption("Abhinav Kumar Piyush · NEU · 2026")
+    st.caption("Abhinav Kumar Piyush · NUID: 002038671 · Northeastern University · Spring 2026")
 
 # ═══ HERO ═══
 st.markdown("""
@@ -69,7 +69,6 @@ st.markdown("""
 
 # Components
 st.markdown("---")
-st.markdown("### ✅ All 5 Core Components")
 st.markdown("""
 <div style="text-align:center; margin:0.8rem 0;">
     <span class="tm-badge badge-pe">1 · PROMPT ENG</span>
