@@ -1,0 +1,63 @@
+{
+  "patient_id": "DEMO-003",
+  "demographics": {
+    "age": 55,
+    "sex": "Male",
+    "race": "Asian"
+  },
+  "diagnosis": {
+    "condition": "Colorectal Cancer",
+    "stage": "IV",
+    "metastatic_sites": [
+      "Liver",
+      "Peritoneum"
+    ]
+  },
+  "biomarkers": {
+    "KRAS": {
+      "status": "Positive",
+      "mutation": "G12D"
+    },
+    "BRAF": {
+      "status": "Negative"
+    },
+    "MSI": {
+      "status": "MSS"
+    }
+  },
+  "lab_values": {
+    "ANC": {
+      "value": 1800,
+      "unit": "cells/uL"
+    },
+    "CEA": {
+      "value": 28.5,
+      "unit": "ng/mL"
+    }
+  },
+  "ECOG_performance_status": 1,
+  "current_medications": [
+    {
+      "name": "Bevacizumab"
+    },
+    {
+      "name": "Ondansetron"
+    }
+  ],
+  "prior_therapies": [
+    {
+      "therapy": "FOLFOX",
+      "cycles": 12
+    },
+    {
+      "therapy": "FOLFIRI + Bevacizumab",
+      "cycles": 4
+    }
+  ],
+  "comorbidities": [
+    "Mild hepatic impairment"
+  ],
+  "allergies": [
+    "Iodine contrast"
+  ]
+}

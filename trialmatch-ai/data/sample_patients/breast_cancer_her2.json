@@ -1,0 +1,58 @@
+{
+  "patient_id": "DEMO-002",
+  "demographics": {
+    "age": 48,
+    "sex": "Female",
+    "race": "Black or African American"
+  },
+  "diagnosis": {
+    "condition": "Breast Cancer",
+    "stage": "IIB",
+    "histology": "Invasive Ductal Carcinoma"
+  },
+  "biomarkers": {
+    "HER2": {
+      "status": "Positive",
+      "IHC": "3+"
+    },
+    "ER": {
+      "status": "Negative"
+    },
+    "PR": {
+      "status": "Negative"
+    }
+  },
+  "lab_values": {
+    "ANC": {
+      "value": 3200,
+      "unit": "cells/uL"
+    },
+    "LVEF": {
+      "value": 58,
+      "unit": "%"
+    }
+  },
+  "ECOG_performance_status": 0,
+  "current_medications": [
+    {
+      "name": "Trastuzumab"
+    },
+    {
+      "name": "Pertuzumab"
+    },
+    {
+      "name": "Lisinopril"
+    }
+  ],
+  "prior_therapies": [
+    {
+      "therapy": "Docetaxel + THP",
+      "cycles": 6,
+      "response": "Near-Complete pCR"
+    }
+  ],
+  "comorbidities": [
+    "Hypertension"
+  ],
+  "allergies": []
+}

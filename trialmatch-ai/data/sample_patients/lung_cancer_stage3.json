@@ -1,0 +1,88 @@
+{
+  "patient_id": "DEMO-001",
+  "demographics": {
+    "age": 62,
+    "sex": "Male",
+    "race": "White"
+  },
+  "diagnosis": {
+    "condition": "Non-Small Cell Lung Cancer",
+    "stage": "IIIA",
+    "histology": "Adenocarcinoma"
+  },
+  "biomarkers": {
+    "EGFR": {
+      "status": "Positive",
+      "mutation": "Exon 19 deletion"
+    },
+    "ALK": {
+      "status": "Negative"
+    },
+    "PD_L1": {
+      "TPS": 65,
+      "status": "High"
+    },
+    "KRAS": {
+      "status": "Negative"
+    }
+  },
+  "lab_values": {
+    "ANC": {
+      "value": 2100,
+      "unit": "cells/uL"
+    },
+    "hemoglobin": {
+      "value": 12.5,
+      "unit": "g/dL"
+    },
+    "platelets": {
+      "value": 195000,
+      "unit": "cells/uL"
+    },
+    "creatinine": {
+      "value": 0.9,
+      "unit": "mg/dL"
+    },
+    "total_bilirubin": {
+      "value": 0.7,
+      "unit": "mg/dL"
+    },
+    "ALT": {
+      "value": 28,
+      "unit": "U/L"
+    },
+    "AST": {
+      "value": 22,
+      "unit": "U/L"
+    }
+  },
+  "ECOG_performance_status": 1,
+  "current_medications": [
+    {
+      "name": "Osimertinib",
+      "dose": "80mg daily"
+    },
+    {
+      "name": "Omeprazole",
+      "dose": "20mg daily"
+    },
+    {
+      "name": "Metformin",
+      "dose": "500mg BID"
+    }
+  ],
+  "prior_therapies": [
+    {
+      "therapy": "Carboplatin + Pemetrexed",
+      "cycles": 4,
+      "response": "Partial Response"
+    }
+  ],
+  "comorbidities": [
+    "Type 2 Diabetes",
+    "GERD"
+  ],
+  "allergies": [
+    "Sulfonamides"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "patient_id": "DEMO-004",
+  "demographics": {
+    "age": 38,
+    "sex": "Female",
+    "race": "White",
+    "ethnicity": "Hispanic"
+  },
+  "diagnosis": {
+    "condition": "Melanoma",
+    "stage": "IIIC"
+  },
+  "biomarkers": {
+    "BRAF": {
+      "status": "Positive",
+      "mutation": "V600E"
+    },
+    "PD_L1": {
+      "TPS": 30
+    }
+  },
+  "lab_values": {
+    "ANC": {
+      "value": 4500,
+      "unit": "cells/uL"
+    },
+    "LDH": {
+      "value": 280,
+      "unit": "U/L"
+    }
+  },
+  "ECOG_performance_status": 0,
+  "current_medications": [
+    {
+      "name": "Dabrafenib"
+    },
+    {
+      "name": "Trametinib"
+    },
+    {
+      "name": "Levothyroxine"
+    }
+  ],
+  "prior_therapies": [
+    {
+      "therapy": "Wide Local Excision",
+      "type": "Surgery"
+    }
+  ],
+  "comorbidities": [
+    "Hypothyroidism"
+  ],
+  "allergies": []
+}

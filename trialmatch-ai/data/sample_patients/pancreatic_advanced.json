@@ -1,0 +1,68 @@
+{
+  "patient_id": "DEMO-005",
+  "demographics": {
+    "age": 71,
+    "sex": "Male",
+    "race": "White"
+  },
+  "diagnosis": {
+    "condition": "Pancreatic Cancer",
+    "stage": "IV",
+    "metastatic_sites": [
+      "Liver"
+    ]
+  },
+  "biomarkers": {
+    "KRAS": {
+      "status": "Positive",
+      "mutation": "G12V"
+    },
+    "BRCA2": {
+      "status": "Negative"
+    }
+  },
+  "lab_values": {
+    "ANC": {
+      "value": 1600,
+      "unit": "cells/uL"
+    },
+    "total_bilirubin": {
+      "value": 1.8,
+      "unit": "mg/dL"
+    },
+    "ALT": {
+      "value": 68,
+      "unit": "U/L"
+    }
+  },
+  "ECOG_performance_status": 2,
+  "current_medications": [
+    {
+      "name": "Gemcitabine"
+    },
+    {
+      "name": "Nab-Paclitaxel"
+    },
+    {
+      "name": "Warfarin"
+    },
+    {
+      "name": "Ketoconazole",
+      "_note": "CYP3A4 inhibitor"
+    }
+  ],
+  "prior_therapies": [
+    {
+      "therapy": "FOLFIRINOX",
+      "cycles": 6,
+      "response": "Progressive Disease"
+    }
+  ],
+  "comorbidities": [
+    "Portal vein thrombosis",
+    "CKD Stage 2"
+  ],
+  "allergies": [
+    "Penicillin"
+  ]
+}
