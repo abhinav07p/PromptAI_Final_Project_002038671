@@ -17,24 +17,36 @@ DARK_LAYOUT = dict(plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)", 
 
 # KPIs
 st.markdown("""
-<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.8rem; margin: 1rem 0;">
-    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: bold;">28</div><div style="font-size: 0.8rem; color: #888;">Patients</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +3</div>
+<div class="stat-grid" style="grid-template-columns: repeat(6, 1fr); gap: 0.8rem; margin: 1.5rem 0;">
+    <div class="stat-card">
+        <div class="stat-num" style="padding-top: 5px;">28</div>
+        <div class="stat-label">Patients</div>
+        <div class="stat-delta delta-pos">↑ +3</div>
     </div>
-    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: bold;">342</div><div style="font-size: 0.8rem; color: #888;">Trials</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +45</div>
+    <div class="stat-card">
+        <div class="stat-num" style="padding-top: 5px;">342</div>
+        <div class="stat-label">Trials</div>
+        <div class="stat-delta delta-pos">↑ +45</div>
     </div>
-    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: bold;">73.2%</div><div style="font-size: 0.8rem; color: #888;">Avg Match</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +2.1%</div>
+    <div class="stat-card">
+        <div class="stat-num" style="padding-top: 5px;">73.2%</div>
+        <div class="stat-label">Avg Match</div>
+        <div class="stat-delta delta-pos">↑ +2.1%</div>
     </div>
-    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: bold;">78.5%</div><div style="font-size: 0.8rem; color: #888;">Coverage</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +4.3%</div>
+    <div class="stat-card">
+        <div class="stat-num" style="padding-top: 5px;">78.5%</div>
+        <div class="stat-label">Coverage</div>
+        <div class="stat-delta delta-pos">↑ +4.3%</div>
     </div>
-    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: bold;">3.8s</div><div style="font-size: 0.8rem; color: #888;">Latency</div><div style="color: #e74c3c; font-size: 0.8rem;">↓ -0.6s</div>
+    <div class="stat-card">
+        <div class="stat-num" style="padding-top: 5px;">3.8s</div>
+        <div class="stat-label">Latency</div>
+        <div class="stat-delta delta-neg">↓ -0.6s</div>
     </div>
-    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; padding: 1.2rem 0.8rem; text-align: center;">
-        <div style="font-size: 1.5rem; font-weight: bold;">12</div><div style="font-size: 0.8rem; color: #888;">Voices</div><div style="color: #1abc9c; font-size: 0.8rem;">↑ +4</div>
+    <div class="stat-card">
+        <div class="stat-num" style="padding-top: 5px;">12</div>
+        <div class="stat-label">Voices</div>
+        <div class="stat-delta delta-pos">↑ +4</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
