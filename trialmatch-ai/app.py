@@ -8,10 +8,6 @@ st.markdown(DARK_CSS, unsafe_allow_html=True)
 
 # ═══ SIDEBAR ═══
 with st.sidebar:
-    st.markdown("### 🏥 TrialMatch AI")
-    st.caption("8-Agent · Controller-Driven · 5 Components")
-    st.markdown("---")
-
     mode = st.radio("**Operating Mode**", ["🎯 Demo Mode", "🦙 Ollama Mode", "🔑 API Mode"], index=0)
     mode_key = mode.split(" ")[1].lower()
     st.session_state["mode"] = mode_key

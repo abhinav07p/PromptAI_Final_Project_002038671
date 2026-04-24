@@ -101,6 +101,24 @@ DARK_CSS = """
 .delta-pos { background: #1abc9c20; color: #1abc9c; border: 1px solid #1abc9c40; }
 .delta-neg { background: #e74c3c20; color: #e74c3c; border: 1px solid #e74c3c40; }
 
+/* Hide default Streamlit sidebar header (app) */
+[data-testid="stSidebarNav"] div:first-child {
+    display: none;
+}
+
+/* Add custom TRIALMATCH header */
+[data-testid="stSidebarNav"]::before {
+    content: "TrialMatch AI";
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    display: block;
+    padding-bottom: 10px;
+}
+
 .audit-pass { border-left: 3px solid #1abc9c; background: #1abc9c10; border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.3rem 0; font-size: 0.85rem; }
 .audit-fail { border-left: 3px solid #e74c3c; background: #e74c3c10; border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.3rem 0; font-size: 0.85rem; }
 .audit-skip { border-left: 3px solid #f0c27f; background: #f0c27f10; border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.3rem 0; font-size: 0.85rem; }
