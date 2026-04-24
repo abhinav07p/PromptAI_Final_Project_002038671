@@ -449,6 +449,6 @@ This project is for academic purposes as part of the Generative AI course at Nor
 ---
 
 <p align="center">
-  <strong>TrialMatch AI</strong> · Built with ❤️ by Abhinav Kumar Piyush · NUID 002038671<br/>
+  <strong>TrialMatch AI</strong> · Built by Abhinav Kumar Piyush · NUID 002038671<br/>
   Northeastern University · MS in Information Systems · Spring 2026
 </p>

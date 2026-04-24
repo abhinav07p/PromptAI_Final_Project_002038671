@@ -8,6 +8,10 @@ st.markdown(DARK_CSS, unsafe_allow_html=True)
 
 # ═══ SIDEBAR ═══
 with st.sidebar:
+    st.markdown("### 🏥 TrialMatch AI")
+    st.caption("8-Agent · Controller-Driven · 5 Components")
+    st.markdown("---")
+
     mode = st.radio("**Operating Mode**", ["🎯 Demo Mode", "🦙 Ollama Mode", "🔑 API Mode"], index=0)
     mode_key = mode.split(" ")[1].lower()
     st.session_state["mode"] = mode_key
@@ -42,7 +46,7 @@ with st.sidebar:
     st.session_state["enable_tts"] = st.toggle("🔊 Audio Output", True)
 
     st.markdown("---")
-    st.caption("Abhinav Kumar Piyush · NUID: 002038671 · Northeastern University · Spring 2026")
+    st.caption("Abhinav Kumar Piyush · NUID 002038671 · NEU Spring 2026")
 
 # ═══ HERO ═══
 st.markdown("""
@@ -65,6 +69,7 @@ st.markdown("""
 
 # Components
 st.markdown("---")
+st.markdown("### ✅ All 5 Core Components")
 st.markdown("""
 <div style="text-align:center; margin:0.8rem 0;">
     <span class="tm-badge badge-pe">1 · PROMPT ENG</span>

@@ -69,55 +69,10 @@ DARK_CSS = """
 .pipe-step.ft { border-color: var(--red); color: var(--red); }
 .pipe-arrow { color: var(--accent); font-weight: 700; margin: 0 0.15rem; }
 
-.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; width: 100%; }
-.stat-card { 
-    background: var(--bg-card); 
-    border: 1px solid var(--border); 
-    border-radius: 12px; 
-    padding: 1.5rem 1rem; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center;
-    min-height: 120px;
-}
-.stat-num { 
-    font-size: 2rem !important; 
-    font-weight: 700 !important; 
-    color: var(--accent) !important; 
-    line-height: 1.4 !important; 
-    margin: 0 !important;
-    padding: 0.2rem 0 !important;
-    overflow: visible !important;
-}
-.stat-label { 
-    font-size: 0.75rem !important; 
-    color: var(--text-dim) !important; 
-    text-transform: uppercase !important; 
-    letter-spacing: 0.1em !important;
-    margin-top: 0.2rem !important;
-}
-.stat-delta { font-size: 0.7rem; padding: 0.1rem 0.4rem; border-radius: 4px; margin-top: 0.4rem; display: inline-block; }
-.delta-pos { background: #1abc9c20; color: #1abc9c; border: 1px solid #1abc9c40; }
-.delta-neg { background: #e74c3c20; color: #e74c3c; border: 1px solid #e74c3c40; }
-
-/* Hide default Streamlit sidebar header (app) */
-[data-testid="stSidebarNav"] div:first-child {
-    display: none;
-}
-
-/* Add custom TRIALMATCH header */
-[data-testid="stSidebarNav"]::before {
-    content: "TrialMatch AI";
-    margin-left: 20px;
-    margin-top: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    display: block;
-    padding-bottom: 10px;
-}
+.stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin: 1rem 0; }
+.stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+.stat-label { font-size: 0.78rem; color: var(--text-dim); }
 
 .audit-pass { border-left: 3px solid #1abc9c; background: #1abc9c10; border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.3rem 0; font-size: 0.85rem; }
 .audit-fail { border-left: 3px solid #e74c3c; background: #e74c3c10; border-radius: 6px; padding: 0.5rem 0.8rem; margin: 0.3rem 0; font-size: 0.85rem; }

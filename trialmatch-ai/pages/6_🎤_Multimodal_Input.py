@@ -81,17 +81,32 @@ else: st.info("Record voice or upload an image above to get started.")
 # ═══ TTS ═══
 st.markdown("---")
 st.markdown("### 🔊 Audio Summary")
-if st.session_state.get("enable_tts", True):
-    if st.button("🔊 Generate Audio"):
-        with st.spinner("Generating audio summary..."):
-            from gtts import gTTS
-            import io
-            
-            text = "62-year-old male with stage 3A non-small cell lung cancer matched 4 trials. Top match: NCT-04954469 at 92%."
-            tts = gTTS(text=text, lang='en')
-            audio_data = io.BytesIO()
-            tts.write_to_fp(audio_data)
-            
-            st.markdown(f"_{text}_")
-            st.audio(audio_data)
-            st.download_button("📥 Download MP3", audio_data.getvalue(), "summary.mp3", "audio/mpeg")
+st.markdown("Generate and play a spoken summary of matching results directly in the app.")
+if st.session_state.get("enable_tts",True):
+    if st.button("🔊 Generate & Play Audio Summary"):
+        summary_text = "Patient DEMO-001. 62-year-old male with stage 3A non-small cell lung cancer. Matched 4 clinical trials. Top match: NCT 04954469, a phase 3 targeted therapy trial, with 92 percent match score across 6 criteria. All criteria passed. No drug interactions detected. One criterion could not be auto-evaluated and requires manual review."
+        
+        with st.spinner("🔊 Generating audio with TTS..."):
+            try:
+                from gtts import gTTS
+                import io
+                tts = gTTS(text=summary_text, lang='en', slow=False)
+                audio_buffer = io.BytesIO()
+                tts.write_to_fp(audio_buffer)
+                audio_buffer.seek(0)
+                audio_bytes = audio_buffer.read()
+                
+                st.success("✅ Audio generated!")
+                st.markdown(f"**Summary:** _{summary_text}_")
+                st.audio(audio_bytes, format="audio/mp3")
+                st.download_button("📥 Also download MP3", audio_bytes, "trialmatch_summary.mp3", "audio/mpeg")
+            except ImportError:
+                # gTTS not installed — fallback to text display
+                st.warning("gTTS not installed. Install with: `pip install gTTS`")
+                st.markdown(f"**Summary text:** _{summary_text}_")
+                st.info("Audio would play here with gTTS installed. The text summary is shown above.")
+            except Exception as e:
+                st.error(f"TTS error: {e}")
+                st.markdown(f"**Summary text:** _{summary_text}_")
+else:
+    st.info("Enable audio summaries in the sidebar (🔊 Audio Output toggle).")
