@@ -1,0 +1,18 @@
+{
+  "model": "dmis-lab/biobert-v1.1",
+  "method": "LoRA (PEFT)",
+  "task": "NER",
+  "entity_types": 14,
+  "lora_rank": 16,
+  "trainable_pct": 0.56,
+  "train_loss": 0.3991,
+  "eval": {
+    "eval_loss": 0.0544,
+    "eval_f1": 1.0,
+    "eval_runtime": 1.4354,
+    "eval_samples_per_second": 69.668,
+    "eval_steps_per_second": 4.877,
+    "epoch": 20.0
+  },
+  "train_samples": 400
+}

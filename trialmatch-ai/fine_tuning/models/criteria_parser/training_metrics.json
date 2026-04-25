@@ -1,0 +1,20 @@
+{
+  "model": "dmis-lab/biobert-v1.1",
+  "method": "LoRA (PEFT)",
+  "lora_rank": 16,
+  "lora_alpha": 32,
+  "trainable_pct": 0.55,
+  "epochs": 15,
+  "train_loss": 0.9722,
+  "eval": {
+    "eval_loss": 0.845,
+    "eval_accuracy": 0.8222,
+    "eval_f1": 0.7503,
+    "eval_runtime": 0.6657,
+    "eval_samples_per_second": 67.593,
+    "eval_steps_per_second": 4.506,
+    "epoch": 15.0
+  },
+  "train_samples": 180,
+  "val_samples": 45
+}
